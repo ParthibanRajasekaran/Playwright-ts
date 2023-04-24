@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe.only("Navigate to web app security website", async () => {
+test.describe("Navigate to web app security website", async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://zero.webappsecurity.com");
   });
