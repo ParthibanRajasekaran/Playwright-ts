@@ -3,7 +3,7 @@ import { LoginPage } from '../page-objects/LoginPage';
 import { HomePage } from '../page-objects/HomePage';
 import { TransferFundsPage } from '../page-objects/TransferFundsPage';
 
-test.describe('Navigate to web app security website', () => {
+test.describe.parallel('Navigate to web app security website', () => {
   let homePage: HomePage;
   let loginPage: LoginPage;
   let transferFundsPage: TransferFundsPage;
