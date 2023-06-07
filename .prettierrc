@@ -8,5 +8,12 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "quoteProps": "as-needed",
-  "useTabs": false
+  "useTabs": false,
+  "endOfLine": "auto",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxSingleQuote": false,
+  "proseWrap": "preserve",
+  "requirePragma": false,
+  "vueIndentScriptAndStyle": false
 }
