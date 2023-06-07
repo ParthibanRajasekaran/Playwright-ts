@@ -10,13 +10,14 @@
 ## Table of Contents
 - [Project Overview 📝](#project-overview)
 - [Preparing for Takeoff 🚀](#preparing-for-takeoff)
-- [IDE Installation](#ide-installation)
+- [IDE Installation 💻](#ide-installation)
 - [First Steps 👣](#first-steps)
-- [Verify Your Playwright Installation](#verify-your-playwright-installation)
+- [Verify Your Playwright Installation ✅](#verify-your-playwright-installation)
 - [Running Tests 🧪](#running-tests)
-- [Crafting Tests  🛠️](#crafting-tests)
-- [License](#license)
+- [Crafting Tests 🛠️](#crafting-tests)
+- [License 📄](#license)
 - [Further Reading 📚](#further-reading)
+
 
 ## Project Overview
 
