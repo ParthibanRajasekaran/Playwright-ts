@@ -1,57 +1,56 @@
 import { test, expect } from "@playwright/test";
+import { FeedbackPage } from "../page-objects/FeedbackPage";
+import { HomePage } from "../page-objects/HomePage";
 
 test.describe("Navigate to web app security website", async () => {
+  let homePage: HomePage;
+  let feedbackPage: FeedbackPage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://zero.webappsecurity.com");
+    homePage = new HomePage(page);
+    feedbackPage = new FeedbackPage(page);
+
+    await homePage.visit();
   });
 
-  test("Fill in feedback form", async ({ page }) => {
-    const feedbackTab = await page.locator("li#feedback");
-
+  test("Fill in feedback form", async () => {
+    const feedbackTab = await homePage.feedbackTab;
     await feedbackTab.click();
 
-    const nameField = await page.locator("input#name");
-    await nameField.fill("sample name");
+    await feedbackPage.fillFeedbackForm(
+      "sample name",
+      "sample@email.com",
+      "sample subject",
+      "sample contents are being entered here"
+    );
 
-    const emailField = await page.locator("input#email");
-    await emailField.fill("sample@email.com");
+    await feedbackPage.submitFeedbackForm();
 
-    const subjectField = await page.locator("input#subject");
-    await subjectField.fill("sample subject");
-
-    const feedbackForm = await page.locator("#comment");
-    await feedbackForm.type("sample contents are being entered here");
-
-    const submitBtn = await page.locator("input[type='submit']");
-    await submitBtn.click();
-
-    const feebackSubmissionTitle = await page.locator("#feedback-title");
-    await expect(feebackSubmissionTitle).toBeVisible;
+    const feedbackSubmissionTitle = await feedbackPage.feedbackSubmissionTitle;
+    await expect(feedbackSubmissionTitle).toBeVisible();
   });
 
-  test("Clear feedback form", async ({ page }) => {
-    const feedbackTab = await page.locator("li#feedback");
-
+  test("Clear feedback form", async () => {
+    const feedbackTab = await homePage.feedbackTab;
     await feedbackTab.click();
 
-    const nameField = await page.locator("input#name");
-    await nameField.fill("sample name");
+    await feedbackPage.fillFeedbackForm(
+      "sample name",
+      "sample@email.com",
+      "sample subject",
+      "sample contents are being entered here"
+    );
 
-    const emailField = await page.locator("input#email");
-    await emailField.fill("sample@email.com");
+    await feedbackPage.clearFeedbackForm();
 
-    const subjectField = await page.locator("input#subject");
-    await subjectField.fill("sample subject");
+    const nameField = await feedbackPage.nameField;
+    const emailField = await feedbackPage.emailField;
+    const subjectField = await feedbackPage.subjectField;
+    const commentField = await feedbackPage.commentField;
 
-    const feedbackForm = await page.locator("#comment");
-    await feedbackForm.type("sample contents are being entered here");
-
-    const clearBtn = await page.locator("input[type='reset']");
-    await clearBtn.click();
-
-    await expect(nameField).toBeEmpty;
-    await expect(emailField).toBeEmpty;
-    await expect(subjectField).toBeEmpty;
-    await expect(feedbackForm).toBeEmpty;
+    await expect(nameField).toBeEmpty();
+    await expect(emailField).toBeEmpty();
+    await expect(subjectField).toBeEmpty();
+    await expect(commentField).toBeEmpty();
   });
 });
