@@ -1,21 +1,24 @@
 import { Expect, Locator, Page } from "@playwright/test";
 
 export class HomePage {
-    // Define selectors
     readonly page: Page
-
     readonly signInBtn: Locator
+    readonly feedbackTab: Locator
+    readonly searchBar: Locator
 
-
-    // Init selector using constructors
     constructor(page: Page){
         this.page = page
-
         this.signInBtn = page.locator("#signin_button");
+        this.feedbackTab = page.locator("li#feedback");
+        this.searchBar = page.locator("#searchTerm");
     }
 
-    // Define login page methods
     async visit(){
-        await this.page.goto("http://zero.webappsecurity.com");
+        await this.page.goto("http://zero.webappsecurity.com")
     }
+
+    async searchForTerm(term: string) {
+        await this.searchBar.type(term);
+        await this.page.keyboard.press("Enter");
+      }
 }
