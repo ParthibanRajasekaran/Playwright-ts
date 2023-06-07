@@ -1,19 +1,19 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class SearchPage {
-  readonly page: Page;
+export class SearchPage extends BasePage {
   readonly searchTxt: Locator;
   readonly searchResults: Locator;
 
   constructor(page: Page) {
-    this.page = page;
-    this.searchTxt = page.locator("#searchTerm");
-    this.searchResults = page.locator(".top_offset li a");
+    super(page);
+    this.searchTxt = page.locator('#searchTerm');
+    this.searchResults = page.locator('.top_offset li a');
   }
 
   async searchFor(term: string) {
     await this.searchTxt.fill(term);
-    await this.page.keyboard.press("Enter");
+    await this.page.keyboard.press('Enter');
   }
 
   async getSearchResultsCount() {
