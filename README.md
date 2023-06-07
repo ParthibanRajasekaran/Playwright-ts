@@ -8,6 +8,7 @@
 </p>
 
 ## Table of Contents
+
 - [Project Overview 📝](#project-overview)
 - [Preparing for Takeoff 🚀](#preparing-for-takeoff)
 - [IDE Installation 💻](#ide-installation)
@@ -17,7 +18,6 @@
 - [Crafting Tests 🛠️](#crafting-tests)
 - [License 📄](#license)
 - [Further Reading 📚](#further-reading)
-
 
 ## Project Overview
 
@@ -50,11 +50,13 @@ npm --version
 Once Node.js and npm are installed, open a terminal or command prompt.
 
 To install TypeScript globally, run the following command:
+
 ```bash
 npm install -g typescript
 ```
 
 After the installation is complete, you can verify the TypeScript version by running the following command:
+
 ```bash
 tsc --version
 ```
@@ -64,11 +66,13 @@ Note: The -g flag in the installation command ensures that TypeScript is install
 That's it! You have now installed TypeScript and checked its version on your system.
 
 ## IDE Installation
+
 - [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/WebStorm_Icon.svg/1024px-WebStorm_Icon.svg.png" alt="WebStorm" width="20" height="20"> WebStorm](https://www.jetbrains.com/webstorm/): Install the WebStorm IDE for a powerful development experience.
-<br> OR <br>
+  <br> OR <br>
 - [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" alt="VS Code" width="20" height="20"> Visual Studio Code](https://code.visualstudio.com): Alternatively, you can use Visual Studio Code, a popular lightweight code editor.
 
-## First Steps 
+## First Steps
+
 1. Clone the repository: `git clone https://github.com/YourUsername/playwright-ts.git`
 2. Open the project in your favorite editor.
 3. Launch a Terminal in your editor (usually found in the bottom right corner).
@@ -77,16 +81,21 @@ That's it! You have now installed TypeScript and checked its version on your sys
 ```bash
 npm install --save-dev
 ```
+
 ## Verify Your Playwright Installation
+
 Run a simple test to verify your Playwright installation:
+
 ```bash
 npm run test:chrome
 ```
 
 If everything is set up correctly, you should see the test running and passing in the console.
 
-## Running Tests 
+## Running Tests
+
 To run the tests via CLI on a headless mode, use one of the following commands based on the browser you want to test:
+
 ```bash
 npm run test:chrome
 npm run test:firefox
@@ -94,10 +103,13 @@ npm run test:safari
 ```
 
 ## Crafting Tests
-Create page classes in the page-objects directory and add methods representing the actions you can perform on the page. Create a new test file in the e2e folder and use the page objects to define your tests. Please use the naming convention *.spec.ts for test classes.
+
+Create page classes in the page-objects directory and add methods representing the actions you can perform on the page. Create a new test file in the e2e folder and use the page objects to define your tests. Please use the naming convention \*.spec.ts for test classes.
 
 ## License
+
 This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for more details.
 
-## Further Reading 
+## Further Reading
+
 [Playwright Documentation](https://playwright.dev/docs/intro)

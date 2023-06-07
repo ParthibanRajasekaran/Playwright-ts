@@ -1,8 +1,8 @@
-import { test, expect } from "@playwright/test";
-import { FeedbackPage } from "../page-objects/FeedbackPage";
-import { HomePage } from "../page-objects/HomePage";
+import { test, expect } from '@playwright/test';
+import { FeedbackPage } from '../page-objects/FeedbackPage';
+import { HomePage } from '../page-objects/HomePage';
 
-test.describe("Navigate to web app security website", async () => {
+test.describe('Navigate to web app security website', async () => {
   let homePage: HomePage;
   let feedbackPage: FeedbackPage;
 
@@ -13,15 +13,15 @@ test.describe("Navigate to web app security website", async () => {
     await homePage.visit();
   });
 
-  test("Fill in feedback form", async () => {
+  test('Fill in feedback form', async () => {
     const feedbackTab = await homePage.feedbackTab;
     await feedbackTab.click();
 
     await feedbackPage.fillFeedbackForm(
-      "sample name",
-      "sample@email.com",
-      "sample subject",
-      "sample contents are being entered here"
+      'sample name',
+      'sample@email.com',
+      'sample subject',
+      'sample contents are being entered here'
     );
 
     await feedbackPage.submitFeedbackForm();
@@ -30,15 +30,15 @@ test.describe("Navigate to web app security website", async () => {
     await expect(feedbackSubmissionTitle).toBeVisible();
   });
 
-  test("Clear feedback form", async () => {
+  test('Clear feedback form', async () => {
     const feedbackTab = await homePage.feedbackTab;
     await feedbackTab.click();
 
     await feedbackPage.fillFeedbackForm(
-      "sample name",
-      "sample@email.com",
-      "sample subject",
-      "sample contents are being entered here"
+      'sample name',
+      'sample@email.com',
+      'sample subject',
+      'sample contents are being entered here'
     );
 
     await feedbackPage.clearFeedbackForm();
