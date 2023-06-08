@@ -16,6 +16,7 @@
 - [Verify Your Playwright Installation ✅](#verify-your-playwright-installation)
 - [Running Tests 🧪](#running-tests)
 - [Crafting Tests 🛠️](#crafting-tests)
+- [Visual Tests 👁️🔍](#visual-tests)
 - [License 📄](#license)
 - [Further Reading 📚](#further-reading)
 
@@ -105,6 +106,26 @@ npm run test:safari
 ## Crafting Tests
 
 Create page classes in the page-objects directory and add methods representing the actions you can perform on the page. Create a new test file in the e2e folder and use the page objects to define your tests. Please use the naming convention \*.spec.ts for test classes.
+
+## Visual Tests
+
+To run the visual tests in the project:
+
+```shell
+npx playwright test --config=visual.config.ts
+```
+To run the visual tests in Safari browser:
+```shell
+npx playwright test --config=visual.config.ts --project=webkit
+```
+To update screenshots in the inventory and then trigger the tests:
+```shell
+npx playwright test --config=visual.config.ts --project=webkit --update-snapshots
+```
+By default, the tests will use the Chromium browser. You can specify a different browser using the --project flag with the value chromium, firefox, or webkit.
+
+### Configuration
+The visual tests are configured using the visual.config.ts file. You can modify this file to customize the test configuration, such as the test suites, browsers, and viewport sizes.
 
 ## License
 
