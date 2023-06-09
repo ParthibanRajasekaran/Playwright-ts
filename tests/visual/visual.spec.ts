@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { ExampleHomePage } from '../page-objects/ExampleHomePage';
+import { ExampleHomePage } from '../../page-objects/ExampleHomePage';
 
-test.describe.only('Visual regression test', () => {
+test.describe('Visual regression test', () => {
   let exampleHomePage: ExampleHomePage;
 
   test.beforeEach(async ({ page }) => {

@@ -105,7 +105,7 @@ npm run test:safari
 
 ## Crafting Tests
 
-Create page classes in the page-objects directory and add methods representing the actions you can perform on the page. Create a new test file in the e2e folder and use the page objects to define your tests. Please use the naming convention \*.spec.ts for test classes.
+Create page classes in the page-objects directory and add methods representing the actions you can perform on the page. Create a new test file in the e2e folder and use the page objects to define your tests. Please use the naming convention \*.spec.ts for test classes within tests/*.
 
 ## Visual Tests
 

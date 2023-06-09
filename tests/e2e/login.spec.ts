@@ -1,7 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
-import { LoginPage } from '../page-objects/LoginPage';
-import { TransferFundsPage } from '../page-objects/TransferFundsPage';
-import { HomePage } from '../page-objects/HomePage';
+import { LoginPage } from '../../page-objects/LoginPage';
+import { TransferFundsPage } from '../../page-objects/TransferFundsPage';
+import { HomePage } from '../../page-objects/HomePage';
 
 test.describe('Navigate to web app security website', async () => {
   let homePage: HomePage;

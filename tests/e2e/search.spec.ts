@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../page-objects/HomePage';
-import { SearchPage } from '../page-objects/SearchPage';
+import { HomePage } from '../../page-objects/HomePage';
+import { SearchPage } from '../../page-objects/SearchPage';
 
 test.describe('Navigate to web app security website', () => {
   let homePage: HomePage;
