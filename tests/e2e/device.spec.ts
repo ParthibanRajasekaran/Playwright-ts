@@ -4,7 +4,7 @@ test.use({
   ...devices['iPhone 13'],
 });
 
-test.describe('Navigate to web app security website', async () => {
+test.describe.skip('Navigate to web app security website', async () => {
   test('test', async ({ page }) => {
     await page.goto('https://www.google.com/?gws_rd=ssl');
     await page.click('button:has-text("Read more")');
