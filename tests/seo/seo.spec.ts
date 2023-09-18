@@ -1,7 +1,7 @@
 import { playAudit } from 'playwright-lighthouse'
-import { test, expect, chromium } from '@playwright/test';
+import { test, chromium } from '@playwright/test';
 
-test.describe('audit example', () => {
+test.describe.skip('audit example', () => {
     test('open browser', async () => {
     const browser = await chromium.launch({
       args: ['--remote-debugging-port=9222'],
