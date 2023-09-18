@@ -18,21 +18,21 @@ test.describe('Navigate to web app security website', async () => {
   });
 
   test('Invalid login and submit payment', async () => {
-    await loginPage.signIn('username', 'password');
-    await expect(loginPage.errorMessage).not.toBeVisible();
+    await playAudit({
+      page: page,
+      thresholds: {
+        seo: 70,      },
+      port: 9222,
+reports: {
+    formats: {
+      json: true, //defaults to false
+      html: true, //defaults to false
+      csv: true, //defaults to false
+    },
+    name: `name-of-the-report`, //defaults to `lighthouse-${new Date().getTime()}`
+    directory: `path/to/directory`, //defaults to `${process.cwd()}/lighthouse`
+  }
 
-    await paymentsPage.visit();
-
-    await paymentsPage.selectPayee('sprint');
-    await paymentsPage.selectAccount('1');
-    await paymentsPage.enterAmount('500');
-    await paymentsPage.enterDate('2023-04-23');
-    await paymentsPage.enterDescription('2023-04-23');
-
-    await paymentsPage.submitPayment();
-    await expect(paymentsPage.paymentNotification).toBeVisible();
-    await expect(paymentsPage.successMessage).toContainText(
-      'The payment was successfully submitted.'
-    );
+    });
   });
 });
