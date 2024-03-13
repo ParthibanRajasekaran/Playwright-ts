@@ -1,13 +1,15 @@
-import { playAudit } from 'playwright-lighthouse'
 import { test, chromium } from '@playwright/test';
 
 test.describe.skip('audit example', () => {
-    test('open browser', async () => {
+  test('open browser', async () => {
     const browser = await chromium.launch({
       args: ['--remote-debugging-port=9222'],
     });
     const page = await browser.newPage();
     await page.goto('https://angular.io/');
+
+    // Importing playAudit dynamically
+    const { playAudit } = await import('playwright-lighthouse');
 
     await playAudit({
       page: page,
@@ -26,9 +28,6 @@ test.describe.skip('audit example', () => {
         directory: `seo-report`, //defaults to `${process.cwd()}/lighthouse`
       },
     });
-
-    
-
     await browser.close();
   });
 });
