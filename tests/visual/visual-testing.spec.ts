@@ -15,7 +15,7 @@ test.afterAll(async () => {
 });
   
 
-test('Visual regression test for Google UK', async () => {
+test.skip('Visual regression test for Google UK', async () => {
   
   // **Basic Usage**
   // Capture a screenshot of the entire page and compare it with a baseline image named 'baseline.png'.

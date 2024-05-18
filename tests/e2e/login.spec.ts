@@ -35,13 +35,13 @@ test.describe('Navigate to web app security website', async () => {
     await expect(loginPage.errorMessage).toBeVisible;
   });
 
-  test('Should login successfully and navigate to transfer funds page', async ({
+  test('Should login successfully and navigate to transfer funds page',{tag: ['@signin', '@happy-path']}, async ({
     page,
   }) => {
     await homePage.signInBtn.click();
 
     await loginPage.usernameInput.fill('username');
-    await loginPage.passwordInput.type('password');
+    await loginPage.passwordInput.pressSequentially('password');
     await loginPage.submitButton.click();
     await expect(loginPage.errorMessage).not.toBeVisible;
 
