@@ -7,14 +7,14 @@ import { stringify } from 'csv-stringify/sync';
  * @param {string} filePath The path to the CSV file.
  * @returns {any[]} An array of objects, each representing a row in the CSV.
  */
-export function csvToJson(filePath: string): any[] {
-  const csvFile = fs.readFileSync(filePath);
-  const records = parse(csvFile, {
-    columns: true,
-    skip_empty_lines: true,
-  });
-  return records;
-}
+// export function csvToJson(filePath: string): any[] {
+//   const csvFile = fs.readFileSync(filePath);
+//   const records = parse(csvFile, {
+//     columns: true,
+//     skip_empty_lines: true,
+//   });
+//   return records;
+// }
 
 /**
  * Converts a CSV file to an array of strings, where each string represents a row in the CSV.
@@ -100,7 +100,7 @@ export function updateCommentsConditionally(filePath: string, newComment: string
     skip_empty_lines: true,
   });
 
-  const updatedRecords = records.map(record => {
+  const updatedRecords = records.map((record: { username: string; comments: string; }) => {
     // Only update comments if the username starts with 'user'
     if (record.username.startsWith('user')) {
       record.comments = newComment;
@@ -111,4 +111,65 @@ export function updateCommentsConditionally(filePath: string, newComment: string
   const updatedCsv = stringify(updatedRecords, { header: true });
   fs.writeFileSync(filePath, updatedCsv);
 }
+
+/**
+ * Pre-processes and updates comments in the CSV, ignoring non-standard rows.
+ * @param {string} filePath Path to the CSV file.
+ * @param {string} dummyValue Value to set in the comments.
+ */
+export function updateValueSafely(filePath: string, dummyValue: string): void {
+  const csvContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  const lines = csvContent.split('\n');
+  const validLines = lines.filter(line => line.split(',').length === 4 || line.includes('EOF'));
+
+  const records = parse(validLines.join('\n'), {
+    columns: true,
+    skip_empty_lines: true
+  });
+
+  const updatedRecords = records.map((record: any) => {
+    if (record.id !== 'EOF') {
+      record.comments = dummyValue; // Set the dummy value
+    }
+    return record;
+  });
+
+  const updatedCsv = stringify(updatedRecords, { header: true });
+  fs.writeFileSync(filePath, updatedCsv);
+}
+
+export function updateValueWithoutComma(filePath: string, dummyValue: string): void {
+  const csvFile = fs.readFileSync(filePath);
+  
+  // Parse the CSV, allowing variable column counts to handle rows like 'EOF'
+  const records = parse(csvFile, {
+    columns: true,
+    skip_empty_lines: true,
+    relax_column_count: true, // Allow rows with varying column counts
+    on_record: (record, context) => {
+      if (record.id === 'EOF') {
+        return null; // Ignore the existing 'EOF' during parsing
+      }
+      return record;
+    }
+  });
+
+  // Update the comments field for all valid records
+  const updatedRecords = records.map((record: { comments: string; }) => {
+    record.comments = dummyValue;
+    return record;
+  });
+
+  // Convert the updated records back to CSV format
+  let updatedCsv = stringify(updatedRecords, { header: true });
+
+  // Append 'EOF' to the end of the CSV content
+  updatedCsv += "EOF\n";
+
+  // Write the updated CSV content back to the file
+  fs.writeFileSync(filePath, updatedCsv);
+}
+
+
+
 

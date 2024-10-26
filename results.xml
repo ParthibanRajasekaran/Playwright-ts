@@ -1,0 +1,653 @@
+<testsuites id="" name="" tests="63" failures="12" skipped="9" errors="0" time="15.575015">
+<testsuite name="api/get-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="2" failures="0" skipped="0" time="0.261" errors="0">
+<testcase name="API testing › Get valid user" classname="api/get-api.spec.ts" time="0.132">
+<system-out>
+<![CDATA[{
+  data: {
+    id: [33m2[39m,
+    email: [32m'janet.weaver@reqres.in'[39m,
+    first_name: [32m'Janet'[39m,
+    last_name: [32m'Weaver'[39m,
+    avatar: [32m'https://reqres.in/img/faces/2-image.jpg'[39m
+  },
+  support: {
+    url: [32m'https://reqres.in/#support-heading'[39m,
+    text: [32m'To keep ReqRes free, contributions towards server costs are appreciated!'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="API testing › Get invalid user" classname="api/get-api.spec.ts" time="0.129">
+</testcase>
+</testsuite>
+<testsuite name="api/post-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="2" failures="0" skipped="0" time="0.375" errors="0">
+<testcase name="API testing › Create user" classname="api/post-api.spec.ts" time="0.175">
+<system-out>
+<![CDATA[{
+  name: [32m'morpheus'[39m,
+  job: [32m'leader'[39m,
+  id: [32m'398'[39m,
+  createdAt: [32m'2024-07-10T15:34:09.409Z'[39m
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="API testing › Create user with invalid request body" classname="api/post-api.spec.ts" time="0.2">
+<system-out>
+<![CDATA[{ error: [32m'Missing password'[39m }
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="api/put-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.177" errors="0">
+<testcase name="API testing › Create user" classname="api/put-api.spec.ts" time="0.177">
+<system-out>
+<![CDATA[{
+  name: [32m'morpheus'[39m,
+  job: [32m'zion resident'[39m,
+  updatedAt: [32m'2024-07-10T15:34:09.422Z'[39m
+}
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="data/dummy-test.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="6" failures="4" skipped="0" time="0.038" errors="0">
+<testcase name="CSV data manipulation tests › Test to read CSV and output as string array" classname="data/dummy-test.spec.ts" time="0.001">
+<system-out>
+<![CDATA[Second row of CSV: 1,user1,pass1,111111
+]]>
+</system-out>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to print all CSV records" classname="data/dummy-test.spec.ts" time="0.004">
+<failure message="dummy-test.spec.ts:27:5 Test to print all CSV records" type="FAILURE">
+<![CDATA[  [chromium] › data/dummy-test.spec.ts:27:5 › CSV data manipulation tests › Test to print all CSV records 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:36
+
+      34 | export function printCsvRecords(filePath: string): void {
+      35 |   const csvFile = fs.readFileSync(filePath);
+    > 36 |   const records = parse(csvFile, {
+         |                        ^
+      37 |     columns: true,
+      38 |     skip_empty_lines: true,
+      39 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at printCsvRecords (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:36:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:28:18
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to access specific CSV field" classname="data/dummy-test.spec.ts" time="0.011">
+<failure message="dummy-test.spec.ts:32:5 Test to access specific CSV field" type="FAILURE">
+<![CDATA[  [chromium] › data/dummy-test.spec.ts:32:5 › CSV data manipulation tests › Test to access specific CSV field 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:57
+
+      55 | export function accessCsvData(filePath: string, header: string, index: number): void {
+      56 |   const csvFile = fs.readFileSync(filePath);
+    > 57 |   const records = parse(csvFile, {
+         |                        ^
+      58 |     columns: true,
+      59 |     skip_empty_lines: true,
+      60 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at accessCsvData (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:57:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:35:16
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to update comments column in CSV file" classname="data/dummy-test.spec.ts" time="0.005">
+<failure message="dummy-test.spec.ts:39:5 Test to update comments column in CSV file" type="FAILURE">
+<![CDATA[  [chromium] › data/dummy-test.spec.ts:39:5 › CSV data manipulation tests › Test to update comments column in CSV file 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:79
+
+      77 | export function updateComments(filePath: string, dummyValue: string): void {
+      78 |   const csvFile = fs.readFileSync(filePath);
+    > 79 |   const records = parse(csvFile, {
+         |                        ^
+      80 |     columns: true,
+      81 |     skip_empty_lines: true,
+      82 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at updateComments (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:79:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:41:17
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Conditionally update comments based on username" classname="data/dummy-test.spec.ts" time="0.011">
+<failure message="dummy-test.spec.ts:45:5 Conditionally update comments based on username" type="FAILURE">
+<![CDATA[  [chromium] › data/dummy-test.spec.ts:45:5 › CSV data manipulation tests › Conditionally update comments based on username 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:98
+
+       96 | export function updateCommentsConditionally(filePath: string, newComment: string): void {
+       97 |   const csvFile = fs.readFileSync(filePath);
+    >  98 |   const records = parse(csvFile, {
+          |                        ^
+       99 |     columns: true,
+      100 |     skip_empty_lines: true,
+      101 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at updateCommentsConditionally (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:98:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:47:30
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Conditionally update comments for EOF" classname="data/dummy-test.spec.ts" time="0.006">
+<system-out>
+<![CDATA[Comments conditionally updated where username starts with 'user'.
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="e2e/device.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Navigate to web app security website › test" classname="e2e/device.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="e2e/feedback.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="2" failures="0" skipped="0" time="4.536" errors="0">
+<testcase name="Navigate to web app security website › Fill in feedback form" classname="e2e/feedback.spec.ts" time="2.267">
+</testcase>
+<testcase name="Navigate to web app security website › Clear feedback form" classname="e2e/feedback.spec.ts" time="2.269">
+</testcase>
+</testsuite>
+<testsuite name="e2e/login.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="2" failures="0" skipped="0" time="4.631" errors="0">
+<testcase name="Navigate to web app security website › Should display error message for invalid login" classname="e2e/login.spec.ts" time="2.082">
+</testcase>
+<testcase name="Navigate to web app security website › Should login successfully and navigate to transfer funds page" classname="e2e/login.spec.ts" time="2.549">
+</testcase>
+</testsuite>
+<testsuite name="e2e/paybills.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.905" errors="0">
+<testcase name="Navigate to web app security website › Invalid login and submit payment" classname="e2e/paybills.spec.ts" time="2.905">
+</testcase>
+</testsuite>
+<testsuite name="e2e/search.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.438" errors="0">
+<testcase name="Navigate to web app security website › Should find search results" classname="e2e/search.spec.ts" time="2.438">
+</testcase>
+</testsuite>
+<testsuite name="e2e/transferfunds.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.507" errors="0">
+<testcase name="Navigate to web app security website › Filter selected" classname="e2e/transferfunds.spec.ts" time="2.507">
+</testcase>
+</testsuite>
+<testsuite name="seo/seo.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="audit example › open browser" classname="seo/seo.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="visual/visual-testing.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="chromium" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Visual regression test for Google UK" classname="visual/visual-testing.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="api/get-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="2" failures="0" skipped="0" time="0.191" errors="0">
+<testcase name="API testing › Get valid user" classname="api/get-api.spec.ts" time="0.115">
+<system-out>
+<![CDATA[{
+  data: {
+    id: [33m2[39m,
+    email: [32m'janet.weaver@reqres.in'[39m,
+    first_name: [32m'Janet'[39m,
+    last_name: [32m'Weaver'[39m,
+    avatar: [32m'https://reqres.in/img/faces/2-image.jpg'[39m
+  },
+  support: {
+    url: [32m'https://reqres.in/#support-heading'[39m,
+    text: [32m'To keep ReqRes free, contributions towards server costs are appreciated!'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="API testing › Get invalid user" classname="api/get-api.spec.ts" time="0.076">
+</testcase>
+</testsuite>
+<testsuite name="api/post-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="2" failures="0" skipped="0" time="0.307" errors="0">
+<testcase name="API testing › Create user" classname="api/post-api.spec.ts" time="0.152">
+<system-out>
+<![CDATA[{
+  name: [32m'morpheus'[39m,
+  job: [32m'leader'[39m,
+  id: [32m'139'[39m,
+  createdAt: [32m'2024-07-10T15:34:12.660Z'[39m
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="API testing › Create user with invalid request body" classname="api/post-api.spec.ts" time="0.155">
+<system-out>
+<![CDATA[{ error: [32m'Missing password'[39m }
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="api/put-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="1" failures="0" skipped="0" time="0.129" errors="0">
+<testcase name="API testing › Create user" classname="api/put-api.spec.ts" time="0.129">
+<system-out>
+<![CDATA[{
+  name: [32m'morpheus'[39m,
+  job: [32m'zion resident'[39m,
+  updatedAt: [32m'2024-07-10T15:34:12.949Z'[39m
+}
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="data/dummy-test.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="6" failures="4" skipped="0" time="0.041" errors="0">
+<testcase name="CSV data manipulation tests › Test to read CSV and output as string array" classname="data/dummy-test.spec.ts" time="0.005">
+<system-out>
+<![CDATA[Second row of CSV: 1,user1,pass1,111111
+]]>
+</system-out>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to print all CSV records" classname="data/dummy-test.spec.ts" time="0.007">
+<failure message="dummy-test.spec.ts:27:5 Test to print all CSV records" type="FAILURE">
+<![CDATA[  [firefox] › data/dummy-test.spec.ts:27:5 › CSV data manipulation tests › Test to print all CSV records 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:36
+
+      34 | export function printCsvRecords(filePath: string): void {
+      35 |   const csvFile = fs.readFileSync(filePath);
+    > 36 |   const records = parse(csvFile, {
+         |                        ^
+      37 |     columns: true,
+      38 |     skip_empty_lines: true,
+      39 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at printCsvRecords (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:36:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:28:18
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to access specific CSV field" classname="data/dummy-test.spec.ts" time="0.008">
+<failure message="dummy-test.spec.ts:32:5 Test to access specific CSV field" type="FAILURE">
+<![CDATA[  [firefox] › data/dummy-test.spec.ts:32:5 › CSV data manipulation tests › Test to access specific CSV field 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:57
+
+      55 | export function accessCsvData(filePath: string, header: string, index: number): void {
+      56 |   const csvFile = fs.readFileSync(filePath);
+    > 57 |   const records = parse(csvFile, {
+         |                        ^
+      58 |     columns: true,
+      59 |     skip_empty_lines: true,
+      60 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at accessCsvData (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:57:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:35:16
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to update comments column in CSV file" classname="data/dummy-test.spec.ts" time="0.007">
+<failure message="dummy-test.spec.ts:39:5 Test to update comments column in CSV file" type="FAILURE">
+<![CDATA[  [firefox] › data/dummy-test.spec.ts:39:5 › CSV data manipulation tests › Test to update comments column in CSV file 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:79
+
+      77 | export function updateComments(filePath: string, dummyValue: string): void {
+      78 |   const csvFile = fs.readFileSync(filePath);
+    > 79 |   const records = parse(csvFile, {
+         |                        ^
+      80 |     columns: true,
+      81 |     skip_empty_lines: true,
+      82 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at updateComments (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:79:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:41:17
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Conditionally update comments based on username" classname="data/dummy-test.spec.ts" time="0.008">
+<failure message="dummy-test.spec.ts:45:5 Conditionally update comments based on username" type="FAILURE">
+<![CDATA[  [firefox] › data/dummy-test.spec.ts:45:5 › CSV data manipulation tests › Conditionally update comments based on username 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:98
+
+       96 | export function updateCommentsConditionally(filePath: string, newComment: string): void {
+       97 |   const csvFile = fs.readFileSync(filePath);
+    >  98 |   const records = parse(csvFile, {
+          |                        ^
+       99 |     columns: true,
+      100 |     skip_empty_lines: true,
+      101 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at updateCommentsConditionally (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:98:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:47:30
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Conditionally update comments for EOF" classname="data/dummy-test.spec.ts" time="0.006">
+<system-out>
+<![CDATA[Comments conditionally updated where username starts with 'user'.
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="e2e/device.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Navigate to web app security website › test" classname="e2e/device.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="e2e/feedback.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="2" failures="0" skipped="0" time="4.59" errors="0">
+<testcase name="Navigate to web app security website › Fill in feedback form" classname="e2e/feedback.spec.ts" time="2.354">
+</testcase>
+<testcase name="Navigate to web app security website › Clear feedback form" classname="e2e/feedback.spec.ts" time="2.236">
+</testcase>
+</testsuite>
+<testsuite name="e2e/login.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="2" failures="0" skipped="0" time="4.754" errors="0">
+<testcase name="Navigate to web app security website › Should display error message for invalid login" classname="e2e/login.spec.ts" time="2.392">
+</testcase>
+<testcase name="Navigate to web app security website › Should login successfully and navigate to transfer funds page" classname="e2e/login.spec.ts" time="2.362">
+</testcase>
+</testsuite>
+<testsuite name="e2e/paybills.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="1" failures="0" skipped="0" time="3.094" errors="0">
+<testcase name="Navigate to web app security website › Invalid login and submit payment" classname="e2e/paybills.spec.ts" time="3.094">
+</testcase>
+</testsuite>
+<testsuite name="e2e/search.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="1" failures="0" skipped="0" time="2.247" errors="0">
+<testcase name="Navigate to web app security website › Should find search results" classname="e2e/search.spec.ts" time="2.247">
+</testcase>
+</testsuite>
+<testsuite name="e2e/transferfunds.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="1" failures="0" skipped="0" time="2.617" errors="0">
+<testcase name="Navigate to web app security website › Filter selected" classname="e2e/transferfunds.spec.ts" time="2.617">
+</testcase>
+</testsuite>
+<testsuite name="seo/seo.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="audit example › open browser" classname="seo/seo.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="visual/visual-testing.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="firefox" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Visual regression test for Google UK" classname="visual/visual-testing.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="api/get-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="2" failures="0" skipped="0" time="0.206" errors="0">
+<testcase name="API testing › Get valid user" classname="api/get-api.spec.ts" time="0.126">
+<system-out>
+<![CDATA[{
+  data: {
+    id: [33m2[39m,
+    email: [32m'janet.weaver@reqres.in'[39m,
+    first_name: [32m'Janet'[39m,
+    last_name: [32m'Weaver'[39m,
+    avatar: [32m'https://reqres.in/img/faces/2-image.jpg'[39m
+  },
+  support: {
+    url: [32m'https://reqres.in/#support-heading'[39m,
+    text: [32m'To keep ReqRes free, contributions towards server costs are appreciated!'[39m
+  }
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="API testing › Get invalid user" classname="api/get-api.spec.ts" time="0.08">
+</testcase>
+</testsuite>
+<testsuite name="api/post-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="2" failures="0" skipped="0" time="0.305" errors="0">
+<testcase name="API testing › Create user" classname="api/post-api.spec.ts" time="0.18">
+<system-out>
+<![CDATA[{
+  name: [32m'morpheus'[39m,
+  job: [32m'leader'[39m,
+  id: [32m'376'[39m,
+  createdAt: [32m'2024-07-10T15:34:18.459Z'[39m
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="API testing › Create user with invalid request body" classname="api/post-api.spec.ts" time="0.125">
+<system-out>
+<![CDATA[{ error: [32m'Missing password'[39m }
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="api/put-api.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="1" failures="0" skipped="0" time="0.127" errors="0">
+<testcase name="API testing › Create user" classname="api/put-api.spec.ts" time="0.127">
+<system-out>
+<![CDATA[{
+  name: [32m'morpheus'[39m,
+  job: [32m'zion resident'[39m,
+  updatedAt: [32m'2024-07-10T15:34:17.923Z'[39m
+}
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="data/dummy-test.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="6" failures="4" skipped="0" time="0.04" errors="0">
+<testcase name="CSV data manipulation tests › Test to read CSV and output as string array" classname="data/dummy-test.spec.ts" time="0.001">
+<system-out>
+<![CDATA[Second row of CSV: 1,user1,pass1,111111
+]]>
+</system-out>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to print all CSV records" classname="data/dummy-test.spec.ts" time="0.003">
+<failure message="dummy-test.spec.ts:27:5 Test to print all CSV records" type="FAILURE">
+<![CDATA[  [webkit] › data/dummy-test.spec.ts:27:5 › CSV data manipulation tests › Test to print all CSV records 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:36
+
+      34 | export function printCsvRecords(filePath: string): void {
+      35 |   const csvFile = fs.readFileSync(filePath);
+    > 36 |   const records = parse(csvFile, {
+         |                        ^
+      37 |     columns: true,
+      38 |     skip_empty_lines: true,
+      39 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at printCsvRecords (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:36:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:28:18
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to access specific CSV field" classname="data/dummy-test.spec.ts" time="0.009">
+<failure message="dummy-test.spec.ts:32:5 Test to access specific CSV field" type="FAILURE">
+<![CDATA[  [webkit] › data/dummy-test.spec.ts:32:5 › CSV data manipulation tests › Test to access specific CSV field 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:57
+
+      55 | export function accessCsvData(filePath: string, header: string, index: number): void {
+      56 |   const csvFile = fs.readFileSync(filePath);
+    > 57 |   const records = parse(csvFile, {
+         |                        ^
+      58 |     columns: true,
+      59 |     skip_empty_lines: true,
+      60 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at accessCsvData (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:57:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:35:16
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Test to update comments column in CSV file" classname="data/dummy-test.spec.ts" time="0.008">
+<failure message="dummy-test.spec.ts:39:5 Test to update comments column in CSV file" type="FAILURE">
+<![CDATA[  [webkit] › data/dummy-test.spec.ts:39:5 › CSV data manipulation tests › Test to update comments column in CSV file 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:79
+
+      77 | export function updateComments(filePath: string, dummyValue: string): void {
+      78 |   const csvFile = fs.readFileSync(filePath);
+    > 79 |   const records = parse(csvFile, {
+         |                        ^
+      80 |     columns: true,
+      81 |     skip_empty_lines: true,
+      82 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at updateComments (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:79:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:41:17
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Conditionally update comments based on username" classname="data/dummy-test.spec.ts" time="0.011">
+<failure message="dummy-test.spec.ts:45:5 Conditionally update comments based on username" type="FAILURE">
+<![CDATA[  [webkit] › data/dummy-test.spec.ts:45:5 › CSV data manipulation tests › Conditionally update comments based on username 
+
+    Error: Invalid Record Length: columns length is 4, got 1 on line 4
+
+       at ../data/datautil.ts:98
+
+       96 | export function updateCommentsConditionally(filePath: string, newComment: string): void {
+       97 |   const csvFile = fs.readFileSync(filePath);
+    >  98 |   const records = parse(csvFile, {
+          |                        ^
+       99 |     columns: true,
+      100 |     skip_empty_lines: true,
+      101 |   });
+
+        at Object.__onRecord (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:965:11)
+        at Object.parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:840:40)
+        at parse (/Users/anushkaparthiban/Projects/Playwright-ts/node_modules/csv-parse/dist/cjs/sync.cjs:1337:23)
+        at updateCommentsConditionally (/Users/anushkaparthiban/Projects/Playwright-ts/data/datautil.ts:98:24)
+        at /Users/anushkaparthiban/Projects/Playwright-ts/tests/data/dummy-test.spec.ts:47:30
+]]>
+</failure>
+</testcase>
+<testcase name="CSV data manipulation tests › Conditionally update comments for EOF" classname="data/dummy-test.spec.ts" time="0.008">
+<system-out>
+<![CDATA[Comments conditionally updated where username starts with 'user'.
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="e2e/device.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Navigate to web app security website › test" classname="e2e/device.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="e2e/feedback.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="2" failures="0" skipped="0" time="4.486" errors="0">
+<testcase name="Navigate to web app security website › Fill in feedback form" classname="e2e/feedback.spec.ts" time="2.364">
+</testcase>
+<testcase name="Navigate to web app security website › Clear feedback form" classname="e2e/feedback.spec.ts" time="2.122">
+</testcase>
+</testsuite>
+<testsuite name="e2e/login.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="2" failures="0" skipped="0" time="5.038" errors="0">
+<testcase name="Navigate to web app security website › Should display error message for invalid login" classname="e2e/login.spec.ts" time="2.151">
+</testcase>
+<testcase name="Navigate to web app security website › Should login successfully and navigate to transfer funds page" classname="e2e/login.spec.ts" time="2.887">
+</testcase>
+</testsuite>
+<testsuite name="e2e/paybills.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="1" failures="0" skipped="0" time="3.363" errors="0">
+<testcase name="Navigate to web app security website › Invalid login and submit payment" classname="e2e/paybills.spec.ts" time="3.363">
+</testcase>
+</testsuite>
+<testsuite name="e2e/search.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="1" failures="0" skipped="0" time="2.627" errors="0">
+<testcase name="Navigate to web app security website › Should find search results" classname="e2e/search.spec.ts" time="2.627">
+</testcase>
+</testsuite>
+<testsuite name="e2e/transferfunds.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="1" failures="0" skipped="0" time="3.138" errors="0">
+<testcase name="Navigate to web app security website › Filter selected" classname="e2e/transferfunds.spec.ts" time="3.138">
+</testcase>
+</testsuite>
+<testsuite name="seo/seo.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="audit example › open browser" classname="seo/seo.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="visual/visual-testing.spec.ts" timestamp="2024-07-10T15:34:08.965Z" hostname="webkit" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Visual regression test for Google UK" classname="visual/visual-testing.spec.ts" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

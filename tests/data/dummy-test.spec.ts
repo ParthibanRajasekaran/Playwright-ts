@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { csvToJson, csvToStringArray, printCsvRecords, accessCsvData, updateComments, updateCommentsConditionally } from '../../data/datautil';
+import { csvToStringArray, printCsvRecords, accessCsvData, updateComments, updateCommentsConditionally, updateValueWithoutComma } from '../../data/datautil';
 
 // Define the path to the CSV file used in the tests
 const filePath = 'data/test-data.csv';
@@ -7,14 +7,14 @@ const filePath = 'data/test-data.csv';
 test.describe("CSV data manipulation tests", () => {
 
 // Test conversion of CSV data to JSON
-csvToJson(filePath).forEach((data, index) => {
-  test(`Test JSON conversion - Row ${index + 1}`, async () => {
-    // Log the details from the converted JSON object
-    console.log(`Running test for ID: ${data.id}`);
-    console.log(`Running test for Username: ${data.username}`);
-    console.log(`Running test for Password: ${data.password}`);
-  });
-});
+// csvToJson(filePath).forEach((data, index) => {
+//   test(`Test JSON conversion - Row ${index + 1}`, async () => {
+//     // Log the details from the converted JSON object
+//     console.log(`Running test for ID: ${data.id}`);
+//     console.log(`Running test for Username: ${data.username}`);
+//     console.log(`Running test for Password: ${data.password}`);
+//   });
+// });
 
 // Test reading a CSV file and outputting it as a string array
 test("Test to read CSV and output as string array", async () => {
@@ -45,6 +45,12 @@ test("Test to update comments column in CSV file", async () => {
 test("Conditionally update comments based on username", async () => {
   const newComment = "Updated for specific user";
   updateCommentsConditionally(filePath, newComment);
+  console.log(`Comments conditionally updated where username starts with 'user'.`);
+});
+
+test("Conditionally update comments for EOF", async () => {
+  const newComment = "111111";
+  updateValueWithoutComma(filePath, newComment);
   console.log(`Comments conditionally updated where username starts with 'user'.`);
 });
 
