@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class TransferFundsPage extends BasePage {
@@ -25,13 +25,22 @@ export class TransferFundsPage extends BasePage {
 
   async visit() {
     if (!this.page.isClosed()) {
-      await this.page.goto(
-        'http://zero.webappsecurity.com/bank/transfer-funds.html'
-      );
+      try {
+        await this.page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html', { waitUntil: 'domcontentloaded' });
+        await expect(this.page).toHaveURL(/transfer-funds\.html/);
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new Error(`Navigation to Transfer Funds page failed: ${error.message}`);
+        } else {
+          throw new Error('Navigation to Transfer Funds page failed due to an unknown error.');
+        }
+      }
     } else {
       throw new Error('Page is closed. Cannot navigate.');
     }
   }
+  
+  
 
   async selectFromAccount(option: string) {
     await this.fromAccount.selectOption(option);

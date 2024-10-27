@@ -32,11 +32,14 @@ export function csvToStringArray(filePath: string): string[] {
  * @param {string} filePath The path to the CSV file.
  */
 export function printCsvRecords(filePath: string): void {
-  const csvFile = fs.readFileSync(filePath);
-  const records = parse(csvFile, {
+  const csvFile = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  const validLines = csvFile.split('\n').filter(line => line.split(',').length === 4);
+
+  const records = parse(validLines.join('\n'), {
     columns: true,
     skip_empty_lines: true,
   });
+
   records.forEach((record: any, index: number) => {
     console.log(`Record ${index + 1}:`);
     for (const key in record) {
@@ -53,11 +56,14 @@ export function printCsvRecords(filePath: string): void {
  * @param {number} index The index of the record (zero-based).
  */
 export function accessCsvData(filePath: string, header: string, index: number): void {
-  const csvFile = fs.readFileSync(filePath);
-  const records = parse(csvFile, {
+  const csvFile = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  const validLines = csvFile.split('\n').filter(line => line.split(',').length === 4);
+
+  const records = parse(validLines.join('\n'), {
     columns: true,
     skip_empty_lines: true,
   });
+
   if (records.length > index) {
     if (header in records[index]) {
       console.log(`Record ${index + 1}, ${header}: ${records[index][header]}`);
@@ -75,15 +81,19 @@ export function accessCsvData(filePath: string, header: string, index: number): 
  * @param {string} dummyValue The value to set for each 'comments' field.
  */
 export function updateComments(filePath: string, dummyValue: string): void {
-  const csvFile = fs.readFileSync(filePath);
-  const records = parse(csvFile, {
+  const csvFile = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  const validLines = csvFile.split('\n').filter(line => line.split(',').length === 4);
+
+  const records = parse(validLines.join('\n'), {
     columns: true,
     skip_empty_lines: true,
   });
-  const updatedRecords = records.map((record: { comments: string; }) => {
+
+  const updatedRecords = records.map((record: { comments: string }) => {
     record.comments = dummyValue; // Set the dummy value
     return record;
   });
+
   const updatedCsv = stringify(updatedRecords, { header: true });
   fs.writeFileSync(filePath, updatedCsv);
 }
@@ -94,13 +104,15 @@ export function updateComments(filePath: string, dummyValue: string): void {
  * @param {string} newComment The new comment to apply to qualifying records.
  */
 export function updateCommentsConditionally(filePath: string, newComment: string): void {
-  const csvFile = fs.readFileSync(filePath);
-  const records = parse(csvFile, {
+  const csvFile = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  const validLines = csvFile.split('\n').filter(line => line.split(',').length === 4);
+
+  const records = parse(validLines.join('\n'), {
     columns: true,
     skip_empty_lines: true,
   });
 
-  const updatedRecords = records.map((record: { username: string; comments: string; }) => {
+  const updatedRecords = records.map((record: { username: string; comments: string }) => {
     // Only update comments if the username starts with 'user'
     if (record.username.startsWith('user')) {
       record.comments = newComment;
